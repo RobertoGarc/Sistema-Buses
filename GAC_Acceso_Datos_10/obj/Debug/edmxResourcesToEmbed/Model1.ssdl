@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ayudante">
+    <Key>
+      <PropertyRef Name="id_ayudante" />
+    </Key>
+    <Property Name="id_ayudante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="45" />
+    <Property Name="cedula" Type="int" />
+    <Property Name="fechanac" Type="date" />
+    <Property Name="direccion" Type="varchar" MaxLength="45" />
+    <Property Name="telefono" Type="int" />
+    <Property Name="id_bus" Type="int" />
+    <Property Name="sexo" Type="int" />
+  </EntityType>
+  <EntityType Name="boleto">
+    <Key>
+      <PropertyRef Name="id_boleto" />
+    </Key>
+    <Property Name="id_boleto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_pasajero" Type="int" />
+    <Property Name="id_bus" Type="int" />
+    <Property Name="id_ruta" Type="int" />
+    <Property Name="horasalida" Type="datetime2" Precision="7" />
+    <Property Name="fechasalida" Type="date" />
+    <Property Name="asientos" Type="varchar" MaxLength="45" />
+    <Property Name="precio" Type="int" />
+    <Property Name="id_vendedor" Type="int" />
+  </EntityType>
+  <EntityType Name="bus">
+    <Key>
+      <PropertyRef Name="id_bus" />
+    </Key>
+    <Property Name="id_bus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipos" Type="int" />
+    <Property Name="id_rutas" Type="int" />
+    <Property Name="id_operador" Type="int" />
+    <Property Name="id_ayudante" Type="int" />
+    <Property Name="unidad" Type="varchar" MaxLength="45" />
+    <Property Name="marca" Type="varchar" MaxLength="45" />
+    <Property Name="color" Type="varchar" MaxLength="45" />
+    <Property Name="añofabricacion" Type="date" />
+    <Property Name="id_boleto" Type="int" />
+  </EntityType>
+  <EntityType Name="operador">
+    <Key>
+      <PropertyRef Name="id_operador" />
+    </Key>
+    <Property Name="id_operador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="45" />
+    <Property Name="cedula" Type="int" />
+    <Property Name="fechanac" Type="date" />
+    <Property Name="direccion" Type="varchar" MaxLength="45" />
+    <Property Name="telefono" Type="int" />
+    <Property Name="id_bus" Type="int" />
+    <Property Name="sexo" Type="int" />
+  </EntityType>
+  <EntityType Name="pasajero">
+    <Key>
+      <PropertyRef Name="id_pasajero" />
+    </Key>
+    <Property Name="id_pasajero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="45" />
+    <Property Name="apellido" Type="varchar" MaxLength="45" />
+    <Property Name="cedula" Type="int" />
+    <Property Name="direccion" Type="varchar" MaxLength="45" />
+    <Property Name="telefono" Type="varchar" MaxLength="45" />
+    <Property Name="fechanacimiento" Type="date" />
+    <Property Name="sexo" Type="int" />
+    <Property Name="id_bus" Type="int" />
+    <Property Name="id_ruta" Type="int" />
+  </EntityType>
+  <EntityType Name="rutas">
+    <Key>
+      <PropertyRef Name="id_rutas" />
+    </Key>
+    <Property Name="id_rutas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rutas" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="sexo">
+    <Key>
+      <PropertyRef Name="id_sexo" />
+    </Key>
+    <Property Name="id_sexo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sexo" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tipos">
+    <Key>
+      <PropertyRef Name="id_tipos" />
+    </Key>
+    <Property Name="id_tipos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="vendedor">
+    <Key>
+      <PropertyRef Name="id_vendedor" />
+    </Key>
+    <Property Name="id_vendedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="45" />
+    <Property Name="cedula" Type="int" />
+    <Property Name="fechanac" Type="date" />
+    <Property Name="direccion" Type="varchar" MaxLength="45" />
+    <Property Name="telefono" Type="int" />
+    <Property Name="sexo" Type="int" />
+  </EntityType>
+  <Association Name="ayudante_ibfk_1">
+    <End Role="sexo" Type="Self.sexo" Multiplicity="0..1" />
+    <End Role="ayudante" Type="Self.ayudante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="ayudante">
+        <PropertyRef Name="sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ayudante_ibfk_2">
+    <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+    <End Role="ayudante" Type="Self.ayudante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id_bus" />
+      </Principal>
+      <Dependent Role="ayudante">
+        <PropertyRef Name="id_bus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="boleto_ibfk_1">
+    <End Role="vendedor" Type="Self.vendedor" Multiplicity="0..1" />
+    <End Role="boleto" Type="Self.boleto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vendedor">
+        <PropertyRef Name="id_vendedor" />
+      </Principal>
+      <Dependent Role="boleto">
+        <PropertyRef Name="id_vendedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="boleto_ibfk_2">
+    <End Role="pasajero" Type="Self.pasajero" Multiplicity="0..1" />
+    <End Role="boleto" Type="Self.boleto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pasajero">
+        <PropertyRef Name="id_pasajero" />
+      </Principal>
+      <Dependent Role="boleto">
+        <PropertyRef Name="id_pasajero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="boleto_ibfk_3">
+    <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+    <End Role="boleto" Type="Self.boleto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id_bus" />
+      </Principal>
+      <Dependent Role="boleto">
+        <PropertyRef Name="id_bus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="boleto_ibfk_4">
+    <End Role="rutas" Type="Self.rutas" Multiplicity="0..1" />
+    <End Role="boleto" Type="Self.boleto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rutas">
+        <PropertyRef Name="id_rutas" />
+      </Principal>
+      <Dependent Role="boleto">
+        <PropertyRef Name="id_ruta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bus_ibfk_1">
+    <End Role="boleto" Type="Self.boleto" Multiplicity="0..1" />
+    <End Role="bus" Type="Self.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="boleto">
+        <PropertyRef Name="id_boleto" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="id_boleto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bus_ibfk_2">
+    <End Role="rutas" Type="Self.rutas" Multiplicity="0..1" />
+    <End Role="bus" Type="Self.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rutas">
+        <PropertyRef Name="id_rutas" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="id_rutas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bus_ibfk_3">
+    <End Role="ayudante" Type="Self.ayudante" Multiplicity="0..1" />
+    <End Role="bus" Type="Self.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ayudante">
+        <PropertyRef Name="id_ayudante" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="id_ayudante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bus_ibfk_4">
+    <End Role="tipos" Type="Self.tipos" Multiplicity="0..1" />
+    <End Role="bus" Type="Self.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipos">
+        <PropertyRef Name="id_tipos" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="id_tipos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bus_ibfk_5">
+    <End Role="operador" Type="Self.operador" Multiplicity="0..1" />
+    <End Role="bus" Type="Self.bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="operador">
+        <PropertyRef Name="id_operador" />
+      </Principal>
+      <Dependent Role="bus">
+        <PropertyRef Name="id_operador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="operador_ibfk_1">
+    <End Role="sexo" Type="Self.sexo" Multiplicity="0..1" />
+    <End Role="operador" Type="Self.operador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="operador">
+        <PropertyRef Name="sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="operador_ibfk_2">
+    <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+    <End Role="operador" Type="Self.operador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id_bus" />
+      </Principal>
+      <Dependent Role="operador">
+        <PropertyRef Name="id_bus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pasajero_ibfk_1">
+    <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+    <End Role="pasajero" Type="Self.pasajero" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id_bus" />
+      </Principal>
+      <Dependent Role="pasajero">
+        <PropertyRef Name="id_bus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pasajero_ibfk_2">
+    <End Role="rutas" Type="Self.rutas" Multiplicity="0..1" />
+    <End Role="pasajero" Type="Self.pasajero" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rutas">
+        <PropertyRef Name="id_rutas" />
+      </Principal>
+      <Dependent Role="pasajero">
+        <PropertyRef Name="id_ruta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pasajero_ibfk_3">
+    <End Role="sexo" Type="Self.sexo" Multiplicity="0..1" />
+    <End Role="pasajero" Type="Self.pasajero" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="pasajero">
+        <PropertyRef Name="sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="vendedor_ibfk_1">
+    <End Role="sexo" Type="Self.sexo" Multiplicity="0..1" />
+    <End Role="vendedor" Type="Self.vendedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="vendedor">
+        <PropertyRef Name="sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BusesModelStoreContainer">
+    <EntitySet Name="ayudante" EntityType="Self.ayudante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="boleto" EntityType="Self.boleto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bus" EntityType="Self.bus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="operador" EntityType="Self.operador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pasajero" EntityType="Self.pasajero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rutas" EntityType="Self.rutas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipos" EntityType="Self.tipos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vendedor" EntityType="Self.vendedor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="ayudante_ibfk_1" Association="Self.ayudante_ibfk_1">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="ayudante" EntitySet="ayudante" />
+    </AssociationSet>
+    <AssociationSet Name="ayudante_ibfk_2" Association="Self.ayudante_ibfk_2">
+      <End Role="bus" EntitySet="bus" />
+      <End Role="ayudante" EntitySet="ayudante" />
+    </AssociationSet>
+    <AssociationSet Name="boleto_ibfk_1" Association="Self.boleto_ibfk_1">
+      <End Role="vendedor" EntitySet="vendedor" />
+      <End Role="boleto" EntitySet="boleto" />
+    </AssociationSet>
+    <AssociationSet Name="boleto_ibfk_2" Association="Self.boleto_ibfk_2">
+      <End Role="pasajero" EntitySet="pasajero" />
+      <End Role="boleto" EntitySet="boleto" />
+    </AssociationSet>
+    <AssociationSet Name="boleto_ibfk_3" Association="Self.boleto_ibfk_3">
+      <End Role="bus" EntitySet="bus" />
+      <End Role="boleto" EntitySet="boleto" />
+    </AssociationSet>
+    <AssociationSet Name="boleto_ibfk_4" Association="Self.boleto_ibfk_4">
+      <End Role="rutas" EntitySet="rutas" />
+      <End Role="boleto" EntitySet="boleto" />
+    </AssociationSet>
+    <AssociationSet Name="bus_ibfk_1" Association="Self.bus_ibfk_1">
+      <End Role="boleto" EntitySet="boleto" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="bus_ibfk_2" Association="Self.bus_ibfk_2">
+      <End Role="rutas" EntitySet="rutas" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="bus_ibfk_3" Association="Self.bus_ibfk_3">
+      <End Role="ayudante" EntitySet="ayudante" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="bus_ibfk_4" Association="Self.bus_ibfk_4">
+      <End Role="tipos" EntitySet="tipos" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="bus_ibfk_5" Association="Self.bus_ibfk_5">
+      <End Role="operador" EntitySet="operador" />
+      <End Role="bus" EntitySet="bus" />
+    </AssociationSet>
+    <AssociationSet Name="operador_ibfk_1" Association="Self.operador_ibfk_1">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="operador" EntitySet="operador" />
+    </AssociationSet>
+    <AssociationSet Name="operador_ibfk_2" Association="Self.operador_ibfk_2">
+      <End Role="bus" EntitySet="bus" />
+      <End Role="operador" EntitySet="operador" />
+    </AssociationSet>
+    <AssociationSet Name="pasajero_ibfk_1" Association="Self.pasajero_ibfk_1">
+      <End Role="bus" EntitySet="bus" />
+      <End Role="pasajero" EntitySet="pasajero" />
+    </AssociationSet>
+    <AssociationSet Name="pasajero_ibfk_2" Association="Self.pasajero_ibfk_2">
+      <End Role="rutas" EntitySet="rutas" />
+      <End Role="pasajero" EntitySet="pasajero" />
+    </AssociationSet>
+    <AssociationSet Name="pasajero_ibfk_3" Association="Self.pasajero_ibfk_3">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="pasajero" EntitySet="pasajero" />
+    </AssociationSet>
+    <AssociationSet Name="vendedor_ibfk_1" Association="Self.vendedor_ibfk_1">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="vendedor" EntitySet="vendedor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

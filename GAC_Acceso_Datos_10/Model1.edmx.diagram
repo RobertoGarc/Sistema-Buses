@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1a3501a5b0ff43bdb76665c7ee824417" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="BusesModel.ayudante" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.boleto" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.bus" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.operador" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.pasajero" Width="1.5" PointX="10.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.rutas" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.sexo" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.tipos" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BusesModel.vendedor" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="BusesModel.ayudante_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.ayudante_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.bus_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.boleto_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.boleto_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.boleto_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.boleto_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.bus_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.bus_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.bus_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.bus_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.operador_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.pasajero_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.operador_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.pasajero_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.pasajero_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="BusesModel.vendedor_ibfk_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
